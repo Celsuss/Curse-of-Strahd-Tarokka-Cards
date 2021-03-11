@@ -15,13 +15,16 @@ def setupWindow():
 
     return window
 
-def getImages(path='images/', extensions=['png', 'jpg']):
-    mask = os.path.join(path, ('*.' + str([e for e in extensions]) + '*'))
-    file_paths = glob.glob(mask)
-    return 0
+def getImagesPaths(common_path='images/common/', high_path='images/high/', extensions=['png', 'jpg']):
+    common_file_mask = os.path.join(common_path, ('*.' + str([e for e in extensions]) + '*'))
+    high_file_mask = os.path.join(common_path, ('*.' + str([e for e in extensions]) + '*'))
+
+    # file_paths = glob.glob(file_mask)
+    file_paths = {'common': glob.glob(common_file_mask), 'high': glob.glob(high_file_mask)}
+    return file_paths
 
 def main():
-    getImages()
+    images_paths = getImagesPaths()
 
     window = setupWindow()
     window.mainloop()
